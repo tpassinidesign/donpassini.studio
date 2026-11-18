@@ -173,12 +173,19 @@ button.sub:hover svg{transform:translateX(4px)}
   -webkit-mask:url(fx/brush.webp) 0 0/100% 34%; mask:url(fx/brush.webp) 0 0/100% 34%}
 .metal .sp3{mix-blend-mode:soft-light;
   background:radial-gradient(ellipse 65% 48% at calc(var(--lx)*100%) var(--gy), rgba(255,255,255,.75), rgba(255,255,255,0) 72%)}
-.metal .red{position:absolute; inset:0; color:transparent;
+/* Safari: background-clip:text and filter must sit on different elements, or the text vanishes */
+.metal .red{position:absolute; inset:0;
+  filter:drop-shadow(calc((var(--lx) - .5)*.12cqh) -0.11cqh 0 rgba(0,0,0,.78)) drop-shadow(0 0.12cqh 0 rgba(255,255,255,.55))}
+.metal .red>div{color:#6a1020; -webkit-text-fill-color:transparent; color:transparent;
   background:
     linear-gradient(180deg, rgba(0,0,0,.42), rgba(0,0,0,.08) 32%, rgba(0,0,0,0) 60%, rgba(255,255,255,.12)),
     linear-gradient(104deg, #3a060e 0%, #620e1c calc(var(--s) - 34%), #a8303f var(--s), #620e1c calc(var(--s) + 34%), #34050c 100%);
-  -webkit-background-clip:text; background-clip:text;
-  filter:drop-shadow(calc((var(--lx) - .5)*.12cqh) -0.11cqh 0 rgba(0,0,0,.78)) drop-shadow(0 0.12cqh 0 rgba(255,255,255,.55))}
+  background-size:100cqw 100cqh; background-repeat:no-repeat;
+  -webkit-background-clip:text; background-clip:text}
+.metal .red>.ttl{background-position:-5.2cqw -17.2cqh}
+.metal .red>.nm{background-position:-5.2cqw -89cqh}
+@supports not ((-webkit-background-clip:text) or (background-clip:text)){
+  .metal .red>div{color:#6a1020; -webkit-text-fill-color:#6a1020; background:none}}
 .metal .ttl{position:absolute; left:5.2%; right:0; top:17.2%; text-align:center;
   font:760 9.3cqh/.968 var(--cond); font-stretch:68%; letter-spacing:-.004em; white-space:nowrap}
 .metal .blk{display:inline-block; text-align:left}
