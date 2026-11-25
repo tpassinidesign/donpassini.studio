@@ -340,7 +340,7 @@ body:not(.reading) .dock{transform:translate(-50%,130%); opacity:0; pointer-even
   <section class="home" id="home" aria-label="Portfolio, Thibault Passini">
     <div class="hd a">
       <h2>If you have time</h2>
-      <button class="sub" id="openBtn">Open the book · 94 pages
+      <button class="sub" id="openBtn">Open the book · 98 pages
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
       </button>
     </div>
@@ -416,9 +416,8 @@ body:not(.reading) .dock{transform:translate(-50%,130%); opacity:0; pointer-even
     <nav class="sheet-links" aria-label="Other pages">
       <button data-nav="0">Cover</button>
       <button data-nav="1">Meet me</button>
-      <button data-nav="2">Edito</button>
-      <button data-nav="46">Curriculum</button>
-      <button data-nav="47">Contact</button>
+      <button data-nav="2">Curriculum</button>
+      <button data-nav="49">Contact</button>
     </nav>
   </div>
 </div>
@@ -436,26 +435,26 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const rootStyle = document.documentElement.style;
 
 /* ── book data ── */
-const LAST = 47;              // spreads: 0 cover … 47 back cover
-const NP = 2*LAST;            // pages p001 … p094 (p001 is the metal cover, built in code)
+const LAST = 49;              // spreads: 0 cover … 49 back cover
+const NP = 2*LAST;            // pages p001 … p098 (p001 is the metal cover, built in code)
 const BACK = LAST-1;          // the leaf carrying the back cover
 const RATIO = 1500/1600;
 const CH = [
   {no:'00', name:'Opening',            from:0,  to:2 },
   {no:'01', name:'Poncelet Boats',     from:3,  to:12, cat:'Transportation design', meta:'Industrial partner · 3 months'},
   {no:'02', name:'Yellow Window — NOX',from:13, to:21, cat:'Space design',          meta:'Internship client · 3 months'},
-  {no:'03', name:'L-Acoustics',        from:22, to:33, cat:'Furniture design',      meta:'Industrial partner · 5 months'},
-  {no:'04', name:'Cigarette Racing',   from:34, to:38, cat:'Transportation design', meta:'Solo · 1 month'},
-  {no:'05', name:'The Kiss of Sound',  from:39, to:42, cat:'Audio design',          meta:'Solo · 36 hours'},
-  {no:'06', name:'Zeekr 礼物',          from:43, to:45, cat:'Product design',        meta:'Duo team · 3 days'},
-  {no:'07', name:'Annexes',            from:46, to:47}
+  {no:'03', name:'L-Acoustics',        from:22, to:29, cat:'Furniture design',      meta:'Industrial partner · 5 months'},
+  {no:'04', name:'Cigarette Racing',   from:30, to:35, cat:'Transportation design', meta:'Solo · 1 month'},
+  {no:'05', name:'The Kiss of Sound',  from:36, to:40, cat:'Audio design',          meta:'Solo · 36 hours'},
+  {no:'06', name:'Zeekr 礼物',          from:41, to:45, cat:'Product design',        meta:'Duo team · 3 days'},
+  {no:'07', name:'Annexes',            from:46, to:49}
 ];
 const PROJECTS = CH.slice(1,7);
-const folioOf = k => k<=10 ? 2*k : k===11 ? 20 : 2*k-2 + (k>=39 ? 8 : 0);
+const folioOf = k => 2*k-1;   // Meet me = p.01–02 (cover not counted)
 const folio = k => k===0 ? 'Cover' : k===LAST ? 'Back cover' : `p. ${pad(folioOf(k))}–${pad(folioOf(k)+1)}`;
 const chapterOf = k => CH.find(c => k>=c.from && k<=c.to);
-const pageURL = n => `pages/p${pad(n,3)}.webp`;
-const midURL  = k => `mid/m${pad(k)}.webp`;
+const pageURL = n => `pages-2026/p${pad(n,3)}.webp`;
+const midURL  = k => `mid-2026/m${pad(k)}.webp`;
 const fullTex = n => ({url:pageURL(n), half:null});
 const midTex  = n => n===NP ? {url:midURL(LAST),half:null} : {url:midURL(n>>1), half:n%2===0?'L':'R'};
 const leftPage  = k => k>=1 ? 2*k : null;
